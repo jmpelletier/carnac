@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Runtime.InteropServices;
 using System.Text;
@@ -169,11 +169,14 @@ namespace Carnac.Logic
             {
                 return SpecialCases[key];
             }
-            string result = KeyCodeToUnicode(key);
-            if (result.Length > 0)
-            {
-                return result;
-            }
+            // Removing this line solved the following problems:
+            // 1. Letters shown as lowercase
+            // 2. Ctrl+letter combo: letter is shown as invisible character
+            //string result = KeyCodeToUnicode(key);
+            //if (result.Length > 0)
+            //{
+            //    return result;
+            //}
             return key.ToString();
         }
 
@@ -183,11 +186,11 @@ namespace Carnac.Logic
             {
                 return SpecialCases[key];
             }
-            string result = KeyCodeToUnicode(key, true);
-            if (result.Length > 0)
-            {
-                return result;
-            }
+            //string result = KeyCodeToUnicode(key, true);
+            //if (result.Length > 0)
+            //{
+            //    return result;
+            //}
             return key.ToString();
         }
 

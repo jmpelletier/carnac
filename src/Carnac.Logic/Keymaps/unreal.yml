@@ -1,0 +1,186 @@
+group: Unreal
+process: UE4Editor  
+
+shortcuts:
+    - name: 新規レベル
+      keys:
+      - Ctrl+N
+    - name: レベルを開く
+      keys:
+      - Ctrl+O
+    - name: 保存
+      keys:
+      - Ctrl+S
+    - name: 名前を付けて保存
+      keys:
+      - Ctrl+Alt+S
+    - name: アセットを開く
+      keys:
+      - Ctrl+P
+    - name: 全て保存
+      keys:
+      - Ctrl+Shift+S
+    - name: 元に戻す
+      keys:
+      - Ctrl+Z
+    - name: やり直す
+      keys:
+      - Ctrl+Y
+    - name: コピー
+      keys:
+      - Ctrl+C
+    - name: 貼り付け
+      keys:
+      - Ctrl+V
+    - name: 切り取り
+      keys:
+      - Ctrl+X
+    - name: 複製
+      keys:
+      - Ctrl+W
+    - name: 削除
+      keys:
+      - Delete
+    - name: 画面の最大化
+      keys:
+      - Shift+F11
+    - name: ヘルプ
+      keys:
+      - F1
+    - name: リアルタイム切替
+      keys:
+      - Ctrl+R
+    - name: 統計の表示
+      keys:
+      - Shift+L
+    - name: FPSの表示
+      keys:
+      - Ctrl+Shift+H
+    - name: ツールの表示
+      keys:
+      - Ctrl+Shift+T
+    - name: ゲームビュー
+      keys:
+      - G
+    - name: 没入モード
+      keys:
+      - F11
+    - name: 透視投影
+      keys:
+      - Alt+G
+    - name: 上
+      keys:
+      - Alt+J
+    - name: 下
+      keys:
+      - Alt+Shift+J
+    - name: 左
+      keys:
+      - Alt+K
+    - name: 右
+      keys:
+      - Alt+Shift+K
+    - name: 前
+      keys:
+      - Alt+H
+    - name: 後ろ
+      keys:
+      - Alt+Shift+H
+    - name: ライティング
+      keys:
+      - Alt+4
+    - name: 非ライティング
+      keys:
+      - Alt+3
+    - name: ワイヤーフレーム
+      keys:
+      - Alt+2
+    - name: 詳細ライティング
+      keys:
+      - Alt+5
+    - name: ライティングのみ
+      keys:
+      - Alt+6
+    - name: ライト複雑度
+      keys:
+      - Alt+7
+    - name: ライトマップ密度
+      keys:
+      - Alt+0
+    - name: シェーダー複雑度
+      keys:
+      - Alt+8
+    - name: コリジョン表示
+      keys:
+      - Alt+C
+    - name: ナビゲーション表示
+      keys:
+      - P
+    - name: フォグ表示
+      keys:
+      - Alt+F
+    - name: 地形表示
+      keys:
+      - Alt+L
+    - name: 移動
+      keys:
+      - W
+    - name: 回転
+      keys:
+      - E
+    - name: 拡大縮小
+      keys:
+      - R
+    - name: 座標切替
+      keys:
+      - Ctrl+`
+    - name: ブラウズ
+      keys:
+      - Ctrl+B
+    - name: 編集
+      keys:
+      - Ctrl+E
+    - name: 選択にフォーカス
+      keys:
+      - F
+    - name: 全選択
+      keys:
+      - Ctrl+A
+    - name: 選択解除・終了
+      keys:
+      - Escape
+    - name: 名称変更
+      keys:
+      - F2
+    - name: 非表示
+      keys:
+      - H
+    - name: 全表示
+      keys:
+      - Ctrl+H
+    - name: グループ化
+      keys:
+      - Ctrl+G
+    - name: グループ解除
+      keys:
+      - Shift+G
+    - name: ツール切替
+      keys:
+      - Space
+    - name: 地面に置く
+      keys:
+      - End
+    - name: ピボットを移動
+      keys:
+      - Alt+MiddleButton
+    - name: プレー
+      keys:
+        - Alt+P
+    - name: シミュレート
+      keys:
+        - Alt+S
+    - name: 透過選択
+      keys:
+        - T
+
+    

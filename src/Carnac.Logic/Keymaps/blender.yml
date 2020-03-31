@@ -1,0 +1,368 @@
+group: Blender
+process: blender  
+
+shortcuts:
+    - name: モード切替
+      keys:
+      - Tab 
+    - name: 全てを表示
+      keys:
+      - Home 
+    - name: カメラ視点切替
+      keys:
+      - NumPad0 
+    - name: 前視点
+      keys:
+      - NumPad1 
+    - name: 視点を下へ回転
+      keys:
+      - NumPad2
+    - name: 後視点
+      keys:
+      - Ctrl+NumPad1 
+    - name: 右視点
+      keys:
+      - NumPad3 
+    - name: 視点を左へ回転
+      keys:
+      - NumPad4 
+    - name: 透視投影・平行投影
+      keys:
+      - NumPad5 
+    - name: 視点を右へ回転
+      keys:
+      - NumPad6 
+    - name: 上視点
+      keys:
+      - NumPad7 
+    - name: 視点を上へ回転
+      keys:
+      - NumPad8 
+    - name: 視点を反対側に
+      keys:
+      - NumPad9 
+    - name: 左視点
+      keys:
+      - Ctrl+NumPad3 
+    - name: 下視点
+      keys:
+      - Ctrl+NumPad7 
+    - name: ローカル視点切替
+      keys:
+      - Divide 
+    - name: ズームイン
+      keys:
+      - Add 
+    - name: ズームアウト
+      keys:
+      - Subtract 
+    - name: 選択を表示
+      keys:
+      - Decimal 
+    - name: 視点を下へ移動
+      keys:
+      - Ctrl+NumPad2 
+    - name: 視点を左へ移動
+      keys:
+      - Ctrl+NumPad4 
+    - name: 視点を右へ移動
+      keys:
+      - Ctrl+NumPad6 
+    - name: 視点を上へ移動
+      keys:
+      - Ctrl+NumPad8 
+    - name: 左に視点をロール
+      keys:
+      - Shift+NumPad4 
+    - name: 右に視点をロール
+      keys:
+      - Shift+NumPad6
+    - name: 視点を範囲に合わせる
+      keys:
+      - Shift+B
+    - name: 全表示とカーソルのリセット
+      keys:
+      - Shift+C
+    - name: 視点にカメラを合わせる
+      keys:
+      - Ctrl+Alt+NumPad0
+    - name: クリッピング領域
+      keys:
+      - Alt+B
+    - name: レンダリング領域
+      keys:
+      - Ctrl+B
+    - name: レンダリング領域をクリア
+      keys:
+      - Ctrl+Alt+B
+    - name: アニメーション再生
+      keys:
+      - Shift+Space
+    - name: 4分割表示
+      keys:
+      - Ctrl+Alt+Q
+    - name: エリア最大化切替
+      keys:
+      - Ctrl+Space
+    - name: エリア全画面表示切替
+      keys:
+      - Ctrl+Alt+Space
+    - name: ツールバーを表示
+      keys:
+      - T
+    - name: サイドバーを表示
+      keys:
+      - N
+    - name: 全選択
+      keys:
+      - A
+    - name: 選択の解除
+      keys:
+      - Alt+A
+    - name: 反転
+      keys:
+      - Ctrl+I
+    - name: サークル選択
+      keys:
+      - C
+    - name: 選択を拡大
+      keys:
+      - Ctrl+Add 
+    - name: 選択を縮小
+      keys:
+      - Ctrl+Subtract 
+    - name: 親を選択
+      keys:
+      - +[
+    - name: 子を選択
+      keys:
+      - +]
+    - name: 親を選択に追加
+      keys:
+      - Shift+[
+    - name: 子を選択に追加
+      keys:
+      - Shift+]
+    - name: グループで選択
+      keys:
+      - Shift+G
+    - name: リンクで選択
+      keys:
+      - Shift+L
+    - name: 追加
+      keys:
+      - Shift+A
+    - name: 削除
+      keys:
+      - X
+      - Delete
+    - name: 移動
+      keys:
+      - G
+    - name: 拡大縮小
+      keys:
+      - S
+    - name: 回転
+      keys:
+      - R
+    - name: 移動をクリア
+      keys:
+      - Alt+G
+    - name: 拡大縮小をクリア
+      keys:
+      - Alt+S
+    - name: 回転をクリア
+      keys:
+      - Alt+R
+    - name: 適用
+      keys:
+      - Ctrl+A
+    - name: 複製
+      keys:
+      - Shift+D
+    - name: リンク複製
+      keys:
+      - Alt+D
+    - name: 統合
+      keys:
+      - Ctrl+J
+    - name: コピー
+      keys:
+      - Ctrl+C
+    - name: 貼り付け
+      keys:
+      - Ctrl+V
+    - name: ペアレント
+      keys:
+      - Ctrl+P
+    - name: コレクションに追加
+      keys:
+      - M
+    - name: コレクションにリンク
+      keys:
+      - Shift+M
+    - name: コレクション・グループ
+      keys:
+      - Ctrl+G
+    - name: コレクションから除外
+      keys:
+      - Ctrl+Alt+G
+    - name: 未リンクの全コレクションから除外
+      keys:
+      - Shift+Ctrl+Alt+G
+    - name: リンク作成
+      keys:
+      - Ctrl+L
+    - name: キーフレーム挿入・面の差し込み 
+      keys:
+      - I
+    - name: キーフレームを削除
+      keys:
+      - Alt+I
+    - name: キーイングセットを変更
+      keys:
+      - Shift+Ctrl+Alt+I
+    - name: 選択を隠す
+      keys:
+      - H
+    - name: 隠したオブジェクトを表示
+      keys:
+      - Alt+H
+    - name: 非選択を隠す
+      keys:
+      - Shift+H
+    - name: 次のワークスペースへ
+      keys:
+      - Ctrl+PageDown
+    - name: 前のワークスペースへ
+      keys:
+      - Ctrl+PageUp
+    - name: 画像をレンダー
+      keys:
+      - F12
+    - name: アニメーションをレンダー
+      keys:
+      - Ctrl+F12
+    - name: レンダー画像を表示
+      keys:
+      - F11
+    - name: アニメーションを表示
+      keys:
+      - Ctrl+F11
+    - name: 元に戻す
+      keys:
+      - Ctrl+Z
+    - name: やり直す
+      keys:
+      - Shift+Ctrl+F11
+    - name: 操作を繰り返す
+      keys:
+      - Shift+R
+    - name: 最後の操作を調整
+      keys:
+      - F9
+    - name: オペレーターを検索
+      keys:
+      - F3
+    - name: 名前を変更
+      keys:
+      - F2
+    - name: 名前を一括変更
+      keys:
+      - Ctrl+F2
+    - name: 新規ドキュメント
+      keys:
+      - Ctrl+N
+    - name: 開く
+      keys:
+      - Ctrl+O
+    - name: 最近使用したファイル
+      keys:
+      - Shift+Ctrl+O
+    - name: 保存
+      keys:
+      - Ctrl+S
+    - name: 名前を付けて保存
+      keys:
+      - Shift+Ctrl+S
+    - name: 終了
+      keys:
+      - Ctrl+Q
+    - name: 押し出し
+      keys:
+      - E
+    - name: 押し出し（詳細）
+      keys:
+      - Alt+E
+    - name: 分割
+      keys:
+      - Y
+    - name: ノーマル
+      keys:
+      - Alt+N
+    - name: ノーマルを外向きに揃える
+      keys:
+      - Shift+N
+    - name: ノーマルを内向きに揃える
+      keys:
+      - Shift+Ctrl+N
+    - name: ノーマルをターゲットへ
+      keys:
+      - Alt+N
+    - name: 分離
+      keys:
+      - P
+    - name: 頂点をベベルに
+      keys:
+      - Shift+Ctrl+B
+    - name: 繋げる
+      keys:
+      - F
+    - name: 連結
+      keys:
+      - J
+    - name: 繋げる
+      keys:
+      - F
+    - name: 頂点をリップ
+      keys:
+      - V
+    - name: 頂点のリップとフィル
+      keys:
+      - Alt+V
+    - name: 頂点のリップと移動
+      keys:
+      - Alt+D
+    - name: 頂点をスライド
+      keys:
+      - Shift+V
+    - name: 頂点をマージ・マスクをクリア
+      keys:
+      - Alt+M
+    - name: フック
+      keys:
+      - Ctrl+H
+    - name: 辺をベベル
+      keys:
+      - Ctrl+B
+    - name: 辺のクリース
+      keys:
+      - Shift+E
+    - name: 面の三角化
+      keys:
+      - Ctrl+T
+    - name: 三角面を四角面に
+      keys:
+      - Alt+J
+    - name: フィル
+      keys:
+      - Alt+F
+    - name: ボックス
+      keys:
+      - B
+    - name: 頂点カラー
+      keys:
+      - Shift+K
+    - name: 伝播
+      keys:
+      - Alt+P

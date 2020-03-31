@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Runtime.InteropServices;
 using System.Text;
@@ -50,16 +50,16 @@ namespace Carnac.Logic
             {Keys.D7, "7"},
             {Keys.D8, "8"},
             {Keys.D9, "9"},
-            {Keys.NumPad0, "0"},
-            {Keys.NumPad1, "1"},
-            {Keys.NumPad2, "2"},
-            {Keys.NumPad3, "3"},
-            {Keys.NumPad4, "4"},
-            {Keys.NumPad5, "5"},
-            {Keys.NumPad6, "6"},
-            {Keys.NumPad7, "7"},
-            {Keys.NumPad8, "8"},
-            {Keys.NumPad9, "9"},
+            //{Keys.NumPad0, "0"},
+            //{Keys.NumPad1, "1"},
+            //{Keys.NumPad2, "2"},
+            //{Keys.NumPad3, "3"},
+            //{Keys.NumPad4, "4"},
+            //{Keys.NumPad5, "5"},
+            //{Keys.NumPad6, "6"},
+            //{Keys.NumPad7, "7"},
+            //{Keys.NumPad8, "8"},
+            //{Keys.NumPad9, "9"},
             {Keys.OemOpenBrackets, "["},
             {Keys.Oem6, "]"},
             {Keys.OemMinus, "-"},

@@ -118,9 +118,13 @@ namespace Carnac.Logic.Models
             {
                 return previousMessage.Replace(newMessage);
             }
+
             // if current is modifier and previous is a mouse action ignore modifierkeypress
-            if (previousMessage.keys != null && KeyProvider.IsModifierKeyPress(newMessage.keys[0].InterceptKeyEventArgs)
-                && InterceptMouse.MouseKeys.Contains(previousMessage.keys[0].Key))
+            if (previousMessage.keys != null && 
+                KeyProvider.IsModifierKeyPress(newMessage.keys[0].InterceptKeyEventArgs) && 
+                InterceptMouse.MouseKeys.Contains(previousMessage.keys[0].Key) &&
+                newMessage.LastMessage.Subtract(previousMessage.LastMessage) < OneSecond
+                )
             {
                 return previousMessage.Replace(previousMessage);
             }
@@ -199,7 +203,7 @@ namespace Carnac.Logic.Models
 
         public override string ToString()
         {
-            return string.Format("{0} {1} {2}", ProcessName, string.Join(string.Empty, Text), ShortcutName);
+            return string.Format("{0} {1} {2}", ProcessName ?? "<null>", Text == null ? "<null>" : string.Join(string.Empty, Text), ShortcutName ?? "<null>");
         }
 
         private sealed class RepeatedKeyPress

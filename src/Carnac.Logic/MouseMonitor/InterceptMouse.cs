@@ -34,14 +34,18 @@ namespace Carnac.Logic.MouseMonitor
             keyStream = Observable.Create<InterceptKeyEventArgs>(observer =>
             {
                 this.observer = observer;
-                m_GlobalHook.MouseClick += OnMouseClick;
+                m_GlobalHook.MouseDown += OnMouseDown; // Use mouse down / up instead
+                m_GlobalHook.MouseUp += OnMouseUp;
+                //m_GlobalHook.MouseClick += OnMouseClick;
                 m_GlobalHook.MouseDoubleClick += OnMouseDoubleClick;
                 m_GlobalHook.MouseWheel += HookManager_MouseWheel;
                 Debug.Write("Subscribed to mouse");
 
                 return Disposable.Create(() =>
                 {
-                    m_GlobalHook.MouseClick -= OnMouseClick;
+                    m_GlobalHook.MouseDown -= OnMouseDown; // Use mouse down / up instead
+                    m_GlobalHook.MouseUp -= OnMouseUp;
+                    //m_GlobalHook.MouseClick -= OnMouseClick;
                     m_GlobalHook.MouseDoubleClick -= OnMouseDoubleClick;
                     m_GlobalHook.MouseWheel -= HookManager_MouseWheel;
                     m_GlobalHook.Dispose();
@@ -69,6 +73,26 @@ namespace Carnac.Logic.MouseMonitor
                 default:
                     return Keys.None;
             }
+        }
+
+        private void OnMouseUp(object sender, MouseEventArgs e)
+        {
+            observer.OnNext(new InterceptKeyEventArgs(
+                MouseButtonsToKeys(e.Button),
+                KeyDirection.Up,
+                Control.ModifierKeys.HasFlag(Keys.Alt),
+                Control.ModifierKeys.HasFlag(Keys.Control),
+                Control.ModifierKeys.HasFlag(Keys.Shift)));
+        }
+
+        private void OnMouseDown(object sender, MouseEventArgs e)
+        {
+            observer.OnNext(new InterceptKeyEventArgs(
+                MouseButtonsToKeys(e.Button),
+                KeyDirection.Down,
+                Control.ModifierKeys.HasFlag(Keys.Alt),
+                Control.ModifierKeys.HasFlag(Keys.Control),
+                Control.ModifierKeys.HasFlag(Keys.Shift)));
         }
 
         private void OnMouseClick(object sender, MouseEventArgs e)

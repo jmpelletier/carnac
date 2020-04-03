@@ -127,7 +127,7 @@ namespace Carnac.Logic
             return null;
         }
 
-        // new implementation of sanitize to support locals
+        // new implementation of sanitize to support locales
         // https://stackoverflow.com/questions/318777/c-sharp-how-to-translate-virtual-keycode-to-char
         static public string KeyCodeToUnicode(Keys key, bool lowerOnly = false)
         {

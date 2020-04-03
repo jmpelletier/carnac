@@ -118,12 +118,6 @@ namespace Carnac.Logic.Models
             {
                 return previousMessage.Replace(newMessage);
             }
-            // if current is modifier and previous is a mouse action ignore modifierkeypress
-            if (previousMessage.keys != null && KeyProvider.IsModifierKeyPress(newMessage.keys[0].InterceptKeyEventArgs)
-                && InterceptMouse.MouseKeys.Contains(previousMessage.keys[0].Key))
-            {
-                return previousMessage.Replace(previousMessage);
-            }
 
             if (ShouldCreateNewMessage(previousMessage, newMessage))
             {
@@ -218,7 +212,7 @@ namespace Carnac.Logic.Models
             }
 
             public bool NextRequiresSeperator { get { return nextRequiresSeperator; } }
-
+                                                                                                                                                                                                                        
             public int RepeatCount { get { return repeatCount; } }
 
             public void IncrementRepeat()

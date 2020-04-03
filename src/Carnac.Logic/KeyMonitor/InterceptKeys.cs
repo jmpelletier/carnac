@@ -27,8 +27,6 @@ namespace Carnac.Logic.KeyMonitor
         {
             DateTime now = DateTime.Now;
 
-            Debug.WriteLine(string.Format("{0} : {1} ({2}) : {3}", now, eventArgs.Key, eventArgs.KeyDirection, KeyDownTimes.ContainsKey(eventArgs.Key) ? KeyDownTimes[eventArgs.Key].ToString() : "<null>"));
-
             if (eventArgs.KeyDirection == KeyDirection.Up)
             {
                 // Remove the key

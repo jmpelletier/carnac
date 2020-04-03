@@ -144,19 +144,10 @@ namespace Carnac.Logic
                 yield return "Alt";
             if (isWinKeyPressed)
                 yield return "Win";
+            if (shiftPressed)
+                yield return "Shift";
 
-            if (controlPressed || altPressed || mouseAction)
-            {
-                //Treat as a shortcut, don't be too smart
-                if (shiftPressed)
-                    yield return "Shift";
-
-                yield return interceptKeyEventArgs.Key.SanitiseLower();
-            }
-            else
-            {
-                yield return interceptKeyEventArgs.Key.Sanitise();
-            }
+            yield return interceptKeyEventArgs.Key.Sanitise();
         }
 
         Process GetAssociatedProcess()

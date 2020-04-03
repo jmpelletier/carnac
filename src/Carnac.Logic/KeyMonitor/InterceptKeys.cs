@@ -5,6 +5,7 @@ using System.Reactive.Linq;
 using System.Runtime.InteropServices;
 using System.Security.Permissions;
 using System.Windows.Forms;
+using System.Collections.Generic;
 
 namespace Carnac.Logic.KeyMonitor
 {
@@ -17,19 +18,59 @@ namespace Carnac.Logic.KeyMonitor
         // ReSharper disable once PrivateFieldCanBeConvertedToLocalVariable
         Win32Methods.LowLevelKeyboardProc callback;
 
+        Dictionary<Keys, DateTime> KeyDownTimes = new Dictionary<Keys, DateTime>();
+
+        // TODO: Find a better way to detect held key strokes
+        static readonly TimeSpan RepeatedStrokeThreshold = TimeSpan.FromSeconds(3);
+
+        bool UpdateHeldKeyState(InterceptKeyEventArgs eventArgs)
+        {
+            DateTime now = DateTime.Now;
+
+            Debug.WriteLine(string.Format("{0} : {1} ({2}) : {3}", now, eventArgs.Key, eventArgs.KeyDirection, KeyDownTimes.ContainsKey(eventArgs.Key) ? KeyDownTimes[eventArgs.Key].ToString() : "<null>"));
+
+            if (eventArgs.KeyDirection == KeyDirection.Up)
+            {
+                // Remove the key
+                KeyDownTimes.Remove(eventArgs.Key);
+                return true;
+            }
+            else
+            {
+                // See if the key is already pressed
+                if (KeyDownTimes.ContainsKey(eventArgs.Key))
+                {
+                    TimeSpan interval = now.Subtract(KeyDownTimes[eventArgs.Key]);
+                    Debug.WriteLine("Interval: " + interval);
+                    if (interval < RepeatedStrokeThreshold)
+                    {
+                        return false;
+                    }
+                }
+
+                // A new keystroke
+                KeyDownTimes[eventArgs.Key] = now;
+                return true;
+            }
+        }
+
         InterceptKeys()
         {
             keyStream = Observable.Create<InterceptKeyEventArgs>(observer =>
             {
-                Debug.Write("Subscribed to keys");
                 IntPtr hookId = IntPtr.Zero;
-                // Need to hold onto this callback, otherwise it will get GC'd as it is an unmanged callback
+                // Need to hold onto this callback, otherwise it will get GC'd as it is an unmanaged callback
                 callback = (nCode, wParam, lParam) =>
                 {
                     if (nCode >= 0)
                     {
                         var eventArgs = CreateEventArgs(wParam, lParam);
-                        observer.OnNext(eventArgs);
+
+                        if (UpdateHeldKeyState(eventArgs))
+                        {
+                            observer.OnNext(eventArgs);
+                        }
+                        
                         if (eventArgs.Handled)
                             return (IntPtr)1;
                     }

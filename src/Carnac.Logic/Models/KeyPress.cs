@@ -57,13 +57,8 @@ namespace Carnac.Logic.Models
                 return GetString(8594);
             if (text == "Down")
                 return GetString(8595);
-
-            // If the space is part of a shortcut sequence
-            // present it as a primitive key. E.g. Ctrl+Space.
-            // Otherwise we want to preserve a space as part of
-            // what is probably a sentence.
-            if (text == " " && isShortcut)
-                return "Space";
+             if (text == " ")
+                return GetString(9141);
 
             return text;
         }

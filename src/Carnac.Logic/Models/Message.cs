@@ -99,6 +99,8 @@ namespace Carnac.Logic.Models
 
         public bool IsModifier { get { return isModifier; } }
 
+        public ReadOnlyCollection<KeyPress> Keys { get { return keys; } }
+
         public Message Merge(Message other)
         {
             return new Message(this, other);
@@ -109,7 +111,7 @@ namespace Carnac.Logic.Models
             return new Message(this, newMessage, true);
         }
 
-    static readonly TimeSpan OneSecond = TimeSpan.FromSeconds(1);
+        static readonly TimeSpan OneSecond = TimeSpan.FromSeconds(1);
 
         public static Message MergeIfNeeded(Message previousMessage, Message newMessage)
         {

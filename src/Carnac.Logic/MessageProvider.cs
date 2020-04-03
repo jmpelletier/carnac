@@ -1,4 +1,8 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.IO;
+using System.Linq;
 using System.Reactive.Linq;
 using Carnac.Logic.Models;
 
@@ -10,11 +14,30 @@ namespace Carnac.Logic
         readonly IKeyProvider keyProvider;
         readonly PopupSettings settings;
 
+        IgnoreMessages ignoreWindowsKey;
+        IgnoreMessages userIgnores;
+
         public MessageProvider(IShortcutProvider shortcutProvider, IKeyProvider keyProvider, PopupSettings settings)
         {
             this.shortcutProvider = shortcutProvider;
             this.keyProvider = keyProvider;
             this.settings = settings;
+
+            ignoreWindowsKey = new IgnoreMessages();
+            ignoreWindowsKey.Add("Win");
+
+            string keymapFolderPath = Path.GetDirectoryName(Process.GetCurrentProcess().MainModule.FileName) + @"\Keymaps\";
+            string ignoreFilePath = keymapFolderPath + "ignore.yml";
+
+            if (Directory.Exists(keymapFolderPath) && File.Exists(ignoreFilePath))
+            {
+                string ymlText = File.ReadAllText(ignoreFilePath);
+                userIgnores = IgnoreMessages.FromYml(ymlText);
+            }
+            else
+            {
+                userIgnores = new IgnoreMessages();
+            }
         }
 
         public IObservable<Message> GetMessageStream()
@@ -39,6 +62,10 @@ namespace Carnac.Logic
                 .Scan(new Message(), (acc, key) => Message.MergeIfNeeded(acc, key))
                 .Where(m =>
                 {
+                    if (ignoreWindowsKey.MatchAnyKey(m) || userIgnores.MatchAllKeys(m))
+                    {
+                        return false;
+                    }
                     if (settings.DetectShortcutsOnly && settings.ShowOnlyModifiers)
                     {
                         return m.IsShortcut && m.IsModifier;

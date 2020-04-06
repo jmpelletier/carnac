@@ -3,6 +3,7 @@ using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using Carnac.Logic.Models;
+using YamlDotNet.Core;
 using YamlDotNet.RepresentationModel;
 
 namespace Carnac.Logic
@@ -11,8 +12,92 @@ namespace Carnac.Logic
     {
         readonly List<ShortcutCollection> shortcuts;
 
+        void LoadShortcuts()
+        {
+            List<ShortcutCollection> shortcuts = new List<ShortcutCollection>();
+
+            string folder = Path.GetDirectoryName(Process.GetCurrentProcess().MainModule.FileName) + @"\Shortcuts\";
+            string filter = "*.yml";
+            if (!Directory.Exists(folder))
+            {
+                shortcuts = new List<ShortcutCollection>();
+                return;
+            }
+            string[] files = Directory.GetFiles(folder, filter);
+
+            var yaml = new YamlStream();
+            foreach (string path in files)
+            {
+                yaml.Load(File.OpenText(path));
+                var root = yaml.Documents[0].RootNode;
+
+                var collection = root as YamlMappingNode;
+                string process = GetValueByKey(collection, "process");
+                YamlMappingNode shortcutNode = collection.Children.First(n => n.Key.ToString() == "shortcuts").Value as YamlMappingNode;
+                if (shortcutNode != null)
+                {
+                    List<KeyShortcut> shortcutList = new List<KeyShortcut>();
+                    foreach(var entry in shortcutNode.Children)
+                    {
+                        string key = ((YamlScalarNode)entry.Key).Value;
+                        string val = entry.Value.ToString();
+                        shortcutList.Add(new KeyShortcut(val, GetKeyPressDefintion(key)));
+                    }
+
+                    shortcuts.Add(new ShortcutCollection(shortcutList)
+                    {
+                        Process = process
+                    });
+                }
+            }
+        }
+
+        void AddYamlShortcuts()
+        {
+            string folder = Path.GetDirectoryName(Process.GetCurrentProcess().MainModule.FileName) + @"\Shortcuts\";
+            string filter = "*.yml";
+            if (Directory.Exists(folder))
+            {
+                string[] files = Directory.GetFiles(folder, filter);
+
+                var yaml = new YamlStream();
+                foreach (string path in files)
+                {
+                    try
+                    {
+                        yaml.Load(File.OpenText(path));
+                        var root = yaml.Documents[0].RootNode;
+
+                        YamlMappingNode collection = root as YamlMappingNode;
+                        string process = GetValueByKey(collection, "process");
+                        YamlMappingNode shortcutNode = collection.Children.First(n => n.Key.ToString() == "shortcuts").Value as YamlMappingNode;
+                        if (shortcutNode != null)
+                        {
+                            List<KeyShortcut> shortcutList = new List<KeyShortcut>();
+                            foreach (var entry in shortcutNode.Children)
+                            {
+                                string key = ((YamlScalarNode)entry.Key).Value;
+                                string val = entry.Value.ToString();
+                                shortcutList.Add(new KeyShortcut(val, GetKeyPressDefintion(key)));
+                            }
+
+                            shortcuts.Add(new ShortcutCollection(shortcutList)
+                            {
+                                Process = process
+                            });
+                        }
+                    } catch (YamlException e)
+                    {
+                        Debug.WriteLine("Yaml exception: " + e.Message);
+                    }
+                    
+                }
+            }
+        }
+
         public ShortcutProvider()
         {
+            // Load the legacy keymaps
             string folder = Path.GetDirectoryName(Process.GetCurrentProcess().MainModule.FileName) + @"\Keymaps\";
             string filter = "*.yml";
             if (!Directory.Exists(folder))
@@ -23,6 +108,10 @@ namespace Carnac.Logic
             string[] files = Directory.GetFiles(folder, filter);
 
             shortcuts = GetYamlMappings(files).Select(GetShortcuts).ToList();
+
+            // Add the new simpler shortcuts...
+            AddYamlShortcuts();
+           
         }
 
         public List<KeyShortcut> GetShortcutsStartingWith(KeyPress keys)

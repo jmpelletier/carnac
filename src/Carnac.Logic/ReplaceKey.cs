@@ -156,6 +156,11 @@ namespace Carnac.Logic
             IntPtr inputLocaleIdentifier = GetKeyboardLayout(0);
 
             StringBuilder result = new StringBuilder();
+
+            // Combos with the control key down result in unprintable characters.
+            // Clear the control key state to make sure we get something readable.
+            const byte VK_CONTROL = 0x11;
+            keyboardState[VK_CONTROL] = 0;
             ToUnicodeEx(virtualKeyCode, scanCode, keyboardState, result, (int)5, (uint)0, inputLocaleIdentifier);
 
             return result.ToString();

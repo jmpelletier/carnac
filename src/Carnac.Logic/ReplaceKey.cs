@@ -105,6 +105,16 @@ namespace Carnac.Logic
             {Keys.Back, "Back"},
             {Keys.Return, "Return"},
             {Keys.Escape, "Escape"},
+            {Keys.NumPad0, "NumPad0"},
+            {Keys.NumPad1, "NumPad1"},
+            {Keys.NumPad2, "NumPad2"},
+            {Keys.NumPad3, "NumPad3"},
+            {Keys.NumPad4, "NumPad4"},
+            {Keys.NumPad5, "NumPad5"},
+            {Keys.NumPad6, "NumPad6"},
+            {Keys.NumPad7, "NumPad7"},
+            {Keys.NumPad8, "NumPad8"},
+            {Keys.NumPad9, "NumPad9"},
         };
 
         // kept to continue to support keymaps parsing
